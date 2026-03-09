@@ -1,0 +1,26 @@
+{
+  "schemaVersion": 1,
+  "id": "codex-client",
+  "version": "${version}",
+  "name": "CodeX Client",
+  "description": "A utility client for Minecraft 1.21.4 on Fabric.",
+  "authors": ["CodeX Team"],
+  "contact": {},
+  "environment": "client",
+  "entrypoints": {
+    "main": [
+      "com.codex.CodeX"
+    ],
+    "client": [
+      "com.codex.client.CodeXClient"
+    ]
+  },
+  "depends": {
+    "fabricloader": ">=${loaderVersion}",
+    "fabric-api": "*",
+    "minecraft": "${minecraftVersion}"
+  },
+  "mixins": [
+    "codex.mixins.json"
+  ]
+}

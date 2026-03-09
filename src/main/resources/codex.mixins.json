@@ -1,0 +1,22 @@
+{
+  "required": true,
+  "package": "com.codex.mixin",
+  "compatibilityLevel": "JAVA_21",
+  "mixins": [
+    "MixinClientPlayerEntity",
+    "MixinClientPlayerInteractionManager",
+    "MixinClientWorld",
+    "MixinGameRenderer",
+    "MixinInGameHud",
+    "MixinInGameHudCrosshair",
+    "MixinInGameHudPotionEffects",
+    "MixinKeyboard",
+    "MixinLightmapTextureManager",
+    "MixinMouse",
+    "MixinSimpleOption",
+    "compat.MixinHeldItemRenderer"
+  ],
+  "injectors": {
+    "defaultRequire": 1
+  }
+}
