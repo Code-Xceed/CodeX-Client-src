@@ -58,7 +58,7 @@ public class CodeXClient implements ClientModInitializer {
 
     @Override
     public void onInitializeClient() {
-        LOGGER.info("Starting CodeX Client for Minecraft 1.21.4...");
+        LOGGER.info("Starting CodeX Client on Minecraft 1.21.4.");
         instance = this;
 
         ModuleManager.init();
@@ -70,15 +70,15 @@ public class CodeXClient implements ClientModInitializer {
         if (!ModuleConfigStore.load(moduleManager, configPath)) {
             moduleManager.enableDefaultModules();
             ModuleConfigStore.save(moduleManager, configPath);
-            LOGGER.info("No existing module config found; defaults applied.");
+            LOGGER.info("No module config was found, so CodeX started with default settings.");
         } else {
-            LOGGER.info("Module config loaded from {}", configPath);
+            LOGGER.info("Loaded module config from {}", configPath);
         }
         if (!GuiSettingsStore.load(guiConfigPath)) {
             GuiSettingsStore.save(guiConfigPath);
-            LOGGER.info("No existing GUI config found; defaults applied.");
+            LOGGER.info("No GUI config was found, so the default layout was saved.");
         } else {
-            LOGGER.info("GUI config loaded from {}", guiConfigPath);
+            LOGGER.info("Loaded GUI config from {}", guiConfigPath);
         }
         ensureEssentialKeybinds(moduleManager);
 
@@ -92,7 +92,7 @@ public class CodeXClient implements ClientModInitializer {
             moduleManager.disableAll();
         }, "CodeX-Config-Save"));
 
-        LOGGER.info("CodeX Client initialized ({} modules loaded).",
+        LOGGER.info("CodeX Client is ready ({} modules loaded).",
             moduleManager.getModules().size());
     }
 
@@ -172,7 +172,7 @@ public class CodeXClient implements ClientModInitializer {
                 try {
                     module.onKeyHold();
                 } catch (RuntimeException ex) {
-                    // Ignore spammy hold errors
+                    // Hold callbacks run every tick, so avoid filling the log with noise here.
                 }
                 pressedModuleKeys.add(keyObj);
             } else {
@@ -279,7 +279,7 @@ public class CodeXClient implements ClientModInitializer {
         if (key <= 0 || key == GLFW.GLFW_KEY_UNKNOWN) {
             clickGUI.setKey(GLFW.GLFW_KEY_RIGHT_SHIFT);
             queueConfigSave();
-            LOGGER.info("Assigned default Right Shift keybind to ClickGUI.");
+            LOGGER.info("ClickGUI did not have a keybind, so Right Shift was assigned.");
         }
     }
 }

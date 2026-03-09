@@ -10,6 +10,6 @@ public class CodeX implements ModInitializer {
 
     @Override
     public void onInitialize() {
-        LOGGER.info("Initializing CodeX Client...");
+        LOGGER.info("CodeX is loading.");
     }
 }
